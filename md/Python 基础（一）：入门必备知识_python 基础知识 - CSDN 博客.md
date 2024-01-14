@@ -1,0 +1,299 @@
+> 本文由 [简悦 SimpRead](http://ksria.com/simpread/) 转码， 原文地址 [blog.csdn.net](https://blog.csdn.net/ityard/article/details/102807071?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522170519318716777224469181%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=170519318716777224469181&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-2-102807071-null-null.142^v99^control&utm_term=python)
+
+#### 目录
+
+*   *   [1 标识符](#1__2)
+    *   [2 关键字](#2__8)
+    *   [3 引号](#3__19)
+    *   [4 编码](#4__37)
+    *   [5 输入输出](#5__42)
+    *   [6 缩进](#6__57)
+    *   [7 多行](#7__68)
+    *   [8 注释](#8__91)
+    *   [9 数据类型](#9__108)
+    *   [10 运算符](#10__124)
+    *   *   [10.1 常用运算符](#101__125)
+        *   [10.2 运算符优先级](#102__161)
+*   [基础](#_179)
+*   [进阶](#_202)
+*   [爬虫](#_214)
+*   [自动化](#_232)
+*   [数据分析](#_241)
+*   [编写小游戏](#_256)
+*   [趣味 Python](#_Python_266)
+*   [文档 & 实战项目](#___294)
+*   [Python 自学路线](#Python__303)
+
+### 1 标识符
+
+标识符是编程时使用的名字，用于给变量、函数、语句块等命名，[Python](https://so.csdn.net/so/search?q=Python&spm=1001.2101.3001.7020) 中标识符由字母、数字、下划线组成，不能以数字开头，区分大小写。
+
+以下划线开头的标识符有特殊含义，单下划线开头的标识符，如：`_xxx` ，表示不能直接访问的类属性，需通过类提供的接口进行访问，不能用 `from xxx import *` 导入；双下划线开头的标识符，如：`__xx`，表示私有成员；双下划线开头和结尾的标识符，如：`__xx__`，表示 Python 中内置标识，如：`__init__()` 表示类的构造函数。
+
+### 2 关键字
+
+<table><thead><tr><th>and</th><th>exec</th><th>not</th><th>assert</th><th>finally</th><th>or</th></tr></thead><tbody><tr><td><strong>break</strong></td><td><strong>for</strong></td><td><strong>pass</strong></td><td><strong>class</strong></td><td><strong>from</strong></td><td><strong>print</strong></td></tr><tr><td><strong>continue</strong></td><td><strong>global</strong></td><td><strong>raise</strong></td><td><strong>def</strong></td><td><strong>if</strong></td><td><strong>return</strong></td></tr><tr><td><strong>del</strong></td><td><strong>import</strong></td><td><strong>try</strong></td><td><strong>elif</strong></td><td><strong>in</strong></td><td><strong>while</strong></td></tr><tr><td><strong>else</strong></td><td><strong>is</strong></td><td><strong>with</strong></td><td><strong>except</strong></td><td><strong>lambda</strong></td><td><strong>yield</strong></td></tr></tbody></table>
+
+上面表中是 Python 中的关键字（保留字），我们在自定义标识符时不能使用关键字。
+
+### 3 引号
+
+Python 可以使用引号（`'`）、双引号（`"`）、三引号（`'''` 或 `"""`）来表示字符串，引号的开始与结束须类型相同，三引号可以由多行组成。如下所示：
+
+```
+id = '001'
+
+name = "张三"
+
+skill = '''
+唱歌
+跳舞'''
+
+skill = """
+唱歌
+跳舞"""
+```
+
+### 4 编码
+
+Python2 中默认编码为 `ASCII`，假如内容为汉字，不指定编码便不能正确的输出及读取，比如我们想要指定编码为 `UTF-8`，Python 中通过在开头加入 `# -*- coding: UTF-8 -*-` 进行指定。
+
+Python3 中默认编码为 `UTF-8`，因此在使用 Python3 时，我们通常不需指定编码。
+
+### 5 输入输出
+
+Python 输出使用 print()，内容加在括号中即可。如下所示：
+
+```
+print('Hello Python')
+```
+
+Python 提供了一个 input()，可以让用户输入字符串，并存放到一个变量里。如下所示：
+
+```
+name = input()
+print('Hi',name)
+```
+
+### 6 缩进
+
+Python 不使用 `{}` 来控制类、函数、逻辑判断等，而是使用缩进，缩进的空格可变。如下所示：
+
+```
+if True:
+    print(True)
+else:
+    print(False)
+```
+
+### 7 多行
+
+Python 中一般以新行作为语句的结束标识，可以使用 `\` 将一行语句分为多行显示。如下所示：
+
+```
+a = 128
+b = 1024
+c = 512
+d = a + \
+    b - \
+    c
+```
+
+如果包含在 `[]`、`{}`、`()` 括号中，则不需要使用 `\`。如下所示：
+
+```
+arr = {
+    a,
+    b,
+    c
+}
+```
+
+### 8 注释
+
+Python 中单行注释使用 `#`，多行注释使用三个单引号（`'''`）或三个双引号（`"""`）。如下所示：
+
+```
+# 我是单行注释
+
+'''
+我是多行注释
+我是多行注释
+'''
+
+"""
+我是多行注释
+我是多行注释
+"""
+```
+
+### 9 数据类型
+
+*   **整数**：可以为任意大小、包含负数
+    
+*   **浮点数**：就是小数
+    
+*   **字符串**：以单引号 `'`、双引号`"`、三引号 `'''` 或 `"""`括起来的文本
+    
+*   **布尔**：只有 `True`、`False` 两种值
+    
+*   **空值**：用 `None` 表示
+    
+*   **变量**：是可变的
+    
+*   **常量**：不可变
+    
+
+### 10 运算符
+
+#### 10.1 常用运算符
+
+<table><thead><tr><th>运算符</th><th>描述</th><th>示例</th></tr></thead><tbody><tr><td>+</td><td>相加</td><td>a + b</td></tr><tr><td>-</td><td>相减</td><td>a - b</td></tr><tr><td>*</td><td>相乘</td><td>a * b</td></tr><tr><td>/</td><td>相除</td><td>a / b</td></tr><tr><td>%</td><td>取模</td><td>a % b</td></tr><tr><td>**</td><td>幂</td><td>a**b 表示 a 的 b 次幂</td></tr><tr><td>//</td><td>取整除</td><td>9 // 4 结果为 2</td></tr><tr><td>==</td><td>是否相等</td><td>a == b</td></tr><tr><td>!=</td><td>是否不等于</td><td>a != b</td></tr><tr><td>&gt;</td><td>是否大于</td><td>a &gt; b</td></tr><tr><td>&gt;=</td><td>是否大于等于</td><td>a &gt;= b</td></tr><tr><td>&lt;=</td><td>是否小于等于</td><td>a &lt;= b</td></tr><tr><td>=</td><td>简单的赋值运算符</td><td>a = b + c</td></tr><tr><td>+=</td><td>加法赋值运算符</td><td>a += b 等效于 a = a + b</td></tr><tr><td>-=</td><td>减法赋值运算符</td><td>a -= b 等效于 a = a - b</td></tr><tr><td>*=</td><td>乘法赋值运算符</td><td>a *= b 等效于 a = a * b</td></tr><tr><td>/=</td><td>除法赋值运算符</td><td>a /= b 等效于 a = a / b</td></tr><tr><td>%=</td><td>取模赋值运算符</td><td>a %= b 等效于 a = a % b</td></tr><tr><td>**=</td><td>幂赋值运算符</td><td>a **= b 等效于 a = a ** b</td></tr><tr><td>//=</td><td>取整除赋值运算符</td><td>a //= b 等效于 a = a // b</td></tr><tr><td>&amp;</td><td>与</td><td>a &amp; b</td></tr><tr><td>|</td><td>或</td><td>a | b</td></tr><tr><td>^</td><td>异或</td><td>a ^ b</td></tr><tr><td>~</td><td>取反</td><td>~a</td></tr><tr><td>&lt;&lt;</td><td>左移动</td><td>a &lt;&lt; 3</td></tr><tr><td>&gt;&gt;</td><td>右移动</td><td>a &gt;&gt; 3</td></tr><tr><td>and</td><td>布尔类型与</td><td>a and b</td></tr><tr><td>or</td><td>布尔类型或</td><td>a or b</td></tr><tr><td>not</td><td>布尔类型非</td><td>not a</td></tr><tr><td>is</td><td>判断两个标识符是否引用同一个对象</td><td>a is b</td></tr><tr><td>is not</td><td>判断两个标识符是否引用不同对象</td><td>a is not b</td></tr></tbody></table>
+
+#### 10.2 运算符优先级
+
+<table><thead><tr><th>运算符</th><th>描述（由上至下对应优先级由高到低）</th></tr></thead><tbody><tr><td>**</td><td>幂运算</td></tr><tr><td>~ + -</td><td>取反、正号、负号</td></tr><tr><td>* / % //</td><td>乘、除、取模、取整除</td></tr><tr><td>+ -</td><td>加法、减法</td></tr><tr><td>&gt;&gt; &lt;&lt;</td><td>右移、左移</td></tr><tr><td>&amp;</td><td>与</td></tr><tr><td>^ |</td><td>异或、或</td></tr><tr><td>&lt;= &lt;&gt; &gt;=</td><td>比较运算符</td></tr><tr><td>== !=</td><td>是否等于、是否不等于</td></tr><tr><td>= %= /= //= -= += *= **=</td><td>赋值运算符</td></tr><tr><td>is is not</td><td>身份运算符</td></tr><tr><td>in not in</td><td>成员运算符</td></tr><tr><td>not and or</td><td>逻辑运算符</td></tr></tbody></table>
+
+基础
+--
+
+[Python 基础（二）：基本语句](https://mp.weixin.qq.com/s/xp4op4PjEtznuxqW3vBfOg)  
+[Python 基础（三）：我是一个数字](https://mp.weixin.qq.com/s/FBnTvFaXqULIJ0WvUc4Euw)  
+[Python 基础（四）：字符串](https://mp.weixin.qq.com/s/x4v5Ml3J-D7pB2nvfoMpaQ)  
+[Python 基础（五）：序列](https://mp.weixin.qq.com/s/D8b5YEkML2I3v-M0XmGJ_w)  
+[Python 基础（六）：列表与元组](https://mp.weixin.qq.com/s/OcfT6UIQNOGMmkGiWQTtUA)  
+[Python 基础（七）：字典与集合](https://mp.weixin.qq.com/s/ouhWQJDR99wcRq6u1J05jA)  
+[Python 基础（八）：与时间相关的模块](https://mp.weixin.qq.com/s/fBGKrjGcBdC5ZXYFQfRF7A)  
+[Python 基础（九）：函数](https://mp.weixin.qq.com/s/V3IplZNTiKtrrkbSUrBt7Q)  
+[Python 基础（十）：模块与包](https://mp.weixin.qq.com/s/YWuSsMn9BUw4XzFmruQVGw)  
+[Python 基础（十一）：面向对象](https://mp.weixin.qq.com/s/oE2SjtHyUX0f50w-WCFL3w)  
+[Python 基础（十二）：文件基本操作](https://mp.weixin.qq.com/s/0bVgw-_68xlw82A0qkTjDA)  
+[Python 基础（十三）：os 模块](https://mp.weixin.qq.com/s/Fsu21H109zgrQ8pQo26PcA)  
+[Python 基础（十四）：错误和异常](https://mp.weixin.qq.com/s/y1l7vjoN1YEKA0VPql4Dnw)  
+[Python 基础（十五）：枚举](https://mp.weixin.qq.com/s/hiLV-toP2cDuw7AQ12VGyw)  
+[Python 基础（十六）：迭代器与生成器](https://mp.weixin.qq.com/s/SpR50SGq-soXHqdSV9u8Zw)  
+[Python 基础（十七）：装饰器](https://mp.weixin.qq.com/s/hC8FnCdWwjAAa6ysjzshVQ)  
+[Python 基础（十八）：命名空间 & 作用域](https://mp.weixin.qq.com/s/vV2nxpg3qW2OUuu_P3pGLw)  
+[Python 基础（十九）：数学相关模块](https://mp.weixin.qq.com/s/oSteWYlAgpLdSzxei4v6jg)  
+[Python 基础（二十）：sys 模块](https://mp.weixin.qq.com/s/HELV_4kKhpRa-JIl-xIiQA)  
+[Python 基础（二十一）：argparse 模块](https://mp.weixin.qq.com/s/lPuJUXLN8BoBLmfeG9qsZA)  
+[Python 基础（二十二）：正则表达式](https://mp.weixin.qq.com/s/WhVHhnRKRzHoCxWLC_rG5w)
+
+进阶
+--
+
+[Python 进阶（一）：多线程](https://mp.weixin.qq.com/s/31c3t8XHnrDpdfO0lKZa8g)  
+[Python 进阶（二）：多进程](https://mp.weixin.qq.com/s/Vu1EJbobRjbflTwikI3Ktw)  
+[Python 进阶（三）：邮件的发送与收取](https://mp.weixin.qq.com/s/48I0OMkZSO8gcDyyydkrAw)  
+[Python 进阶（四）：数据库操作之 MySQL](https://mp.weixin.qq.com/s/vpO8ADkyrzqHpuq73n6Ddw)  
+[Python 进阶（五）：数据库操作之 SQLite](https://mp.weixin.qq.com/s/sXLdS9PhPVDdxLC2L5_w8w)  
+[Python 进阶（六）： Excel 基本操作](https://mp.weixin.qq.com/s/7ARxA56CkwaxgA39ue-6OQ)  
+[Python 进阶（七）： Word 基本操作](https://mp.weixin.qq.com/s/W8XLpTkCpfnwBVShRbp5wg)  
+[Python 进阶（八）：XML 基本操作](https://mp.weixin.qq.com/s/uNEwkMaSA3W7knfyoX_POA)  
+[Python 进阶（九）：JSON 基本操作](https://mp.weixin.qq.com/s/x6-WmmtrKSdE3beMbIgwhQ)  
+[Python 进阶（十）：网络编程](https://mp.weixin.qq.com/s/DqbmaiJurcbjCNRyDZlqVQ)
+
+爬虫
+--
+
+[100+ Python 爬虫经典实战项目](https://blog.csdn.net/ityard/article/details/120942236)  
+[Python 爬虫（一）：爬虫伪装](https://mp.weixin.qq.com/s/olb0vzD1OtxcjHGjv5_1jw)  
+[Python 爬虫（二）：Requests 库](https://mp.weixin.qq.com/s/ZPMPC9R7dvsVNQ47QqeFLw)  
+[Python 爬虫（三）：BeautifulSoup 库](https://mp.weixin.qq.com/s/rIrc0aXYKm1ke5stxpJj-w)  
+[Python 爬虫（四）：Selenium 框架](https://mp.weixin.qq.com/s/Lj89zKS1O5Q7ItVa5Zw3HQ)  
+[Python 爬虫（五）：PyQuery 框架](https://mp.weixin.qq.com/s/qiPHdNiF73jBCaATNucxHA)  
+[Python 爬虫（六）：Scrapy 爬取景区信息](https://mp.weixin.qq.com/s/gMxDNSWVgHflWoE7B_Xy0Q)  
+[Python 爬虫（七）：pyspider 使用](https://mp.weixin.qq.com/s/nfOc8su6d9jwrqCW1S3Iyg)  
+[Python 爬取知乎问答](https://mp.weixin.qq.com/s/WRKC9WVMMSqER0STGjIwbg)  
+[Python 爬取公众号文章](https://mp.weixin.qq.com/s/hbZUWjob1U06ugIKojdHqw)  
+[Python 爬取 B 站《后浪》弹幕](https://mp.weixin.qq.com/s/r__yDAaZm5qHXpO3slGJGQ)  
+[Python 爬取爱奇艺《民国奇探》弹幕](https://mp.weixin.qq.com/s/1DDkqehBEZQdQ4JKG67GfQ)  
+[用 Python 爬取英雄联盟（lol）全部皮肤](https://mp.weixin.qq.com/s/g4CGeBBMuPQ5eob_9M345g)  
+[Python 爬取豆瓣《南方车站的聚会》评论](https://mp.weixin.qq.com/s/QTcNe84W195LeKq7HtDESQ)  
+[用 Python 爬取了三大相亲软件评论区，结果…](https://mp.weixin.qq.com/s/DjTa_n7sOWSxDGwLTKtdug)  
+[爬取林丹和赵雅淇的微博评论，看看网友都说了些什么](https://mp.weixin.qq.com/s/kLOXj6oRG_OwL19HwHc_oA)
+
+自动化
+---
+
+[Word 批量转 PDF](https://mp.weixin.qq.com/s/jx6JnbYKR1J_8Uv1d_KmRg)  
+[Python 批量合并 Excel](https://mp.weixin.qq.com/s/2hLdJEHNPal3G9kb--P9uQ)  
+[自动化神器！Python 批量读取身份证信息写入 Excel](https://blog.csdn.net/ityard/article/details/118461225)  
+[Python + Appium 自动化操作微信入门看这一篇就够了](https://blog.csdn.net/ityard/article/details/109498443)  
+[用 Python 实现微信自动化抢红包，再也不用担心抢不到红包了](https://blog.csdn.net/ityard/article/details/110020469)  
+[我用 Python 找出了删除我微信的所有人并将他们自动化删除了](https://blog.csdn.net/ityard/article/details/109558416)  
+[用 Python 实现定时自动化收取蚂蚁森林能量，再也不用担心忘记收取了](https://ityard.blog.csdn.net/article/details/109733747)
+
+数据分析
+----
+
+[Python 数据分析（一）：NumPy 基础知识](https://ityard.blog.csdn.net/article/details/104727326)  
+[Python 数据分析（二）：Matplotlib 绘图](https://ityard.blog.csdn.net/article/details/104854354)  
+[Python 数据分析（三）：初识 Pandas](https://ityard.blog.csdn.net/article/details/104873042)  
+[Python 数据分析（四）：Pandas 进阶](https://ityard.blog.csdn.net/article/details/105010070)  
+[最全的 NumPy 教程](https://mp.weixin.qq.com/s/93cM--oG8INpWxzuPAwVuQ)  
+[Python 分析《龙岭迷窟》](https://mp.weixin.qq.com/s/L0sKfEVSfDLG6g8nMIDyaA)  
+[Python 绘制各种疫情图](https://mp.weixin.qq.com/s/RZ0d9FWDJDPH2IqrIsThMw)  
+[Python 数据分析入门知识手册](https://zhuanlan.zhihu.com/p/439700997)  
+[Pandas 速查表 & 中文文档 & 视频教程](https://blog.csdn.net/ityard/article/details/118214228)  
+[用 Python 分析电影《我和我的家乡》](https://mp.weixin.qq.com/s/FjNzAxkioePPG1a6vR0jTQ)  
+[2022 春节贺岁档电影开分，用 Python 一探究竟](https://ityard.blog.csdn.net/article/details/122771841)  
+[2021 年国庆你的朋友去哪浪了？让 Python 告诉你](https://mp.weixin.qq.com/s/E3YwBLrYXXiAylQXAzMjWw)  
+[wlh 的瓜很大！我用 Python 爬取了瓜文评论区，发现更精彩](https://mp.weixin.qq.com/s/4Vb4l2ze4hnrErSVduVkGA)
+
+编写小游戏
+-----
+
+[扫雷](https://blog.csdn.net/ityard/article/details/113793237)  
+[贪吃蛇](https://mp.weixin.qq.com/s/LcWpu2ENepoPd96z_sMS_w)  
+[坦克大战](https://mp.weixin.qq.com/s/dYi21tV8bOoQUfQ23MQQRA)  
+[飞机大战](https://mp.weixin.qq.com/s/0bNIu8JyrBUOGa3v9Nt0kw)  
+[开心消消乐](https://mp.weixin.qq.com/s/2H_OrMP7YdRaPzc-3zhaqA)  
+[俄罗斯方块](https://mp.weixin.qq.com/s/uJV6dJh3_eUb8Ll8mPc85Q)  
+[植物大战僵尸](https://mp.weixin.qq.com/s/LAwFhz5FTquWmE9ertAGcA)  
+[魂斗罗 + 30 个 Python 小游戏](https://ityard.blog.csdn.net/article/details/124521784)
+
+趣味 Python
+---------
+
+[当 Python 遇到微信](https://mp.weixin.qq.com/s/rjKuteg3VjQH-W9twQ6Zlw)  
+[我用 Python 把老板辞退了](https://mp.weixin.qq.com/s/btPSjj59UfYYXJvDW1lrmw)  
+[用 Python 写个七夕表白神器](https://mp.weixin.qq.com/s/B9kGJmgbwdwsMnE-3PMXFA)  
+[用 Python 实现微信自动回复](https://mp.weixin.qq.com/s/UhlHK8pCGYAcHTL7M7NI4Q)  
+[用 Python 下载抖音无水印视频](https://mp.weixin.qq.com/s/DF7_b_F1iHUqPnOqYV3uYA)  
+[Python 实现黑客帝国代码雨效果](https://mp.weixin.qq.com/s/h0ZIqCFmGfVUMOVFnSyjsw)  
+[用 Python 制作炫酷二维码及解析](https://mp.weixin.qq.com/s/0DWZAc_Q_sbHnJNf5GpiVg)  
+[用 Python 写一个颜值测试小工具](https://mp.weixin.qq.com/s/4-eLMsR7cJDwC9GiPSZxHQ)  
+[用 Python 送上特殊的母亲节祝福](https://mp.weixin.qq.com/s/pVLHXz8Z14uGC7TqLTIy2w)  
+[骚操作 | 用 Python 实现 GIF 倒放](https://mp.weixin.qq.com/s/qEfslv82tU9ksqUU9Ojveg)  
+[用 Python 画一个奸笑 (滑稽) 表情](https://mp.weixin.qq.com/s/EjD0U-yLhjL5Jm9TdEpDyQ)  
+[用 Python 制作一个艺术签名小工具](https://mp.weixin.qq.com/s/trfSE4iwX-IKtX2QykCwqA)  
+[我用 Python 画了一盘粽子送给大家](https://mp.weixin.qq.com/s/AozTLZVtJSJ38ggYaUmWnA)  
+[用 Python 画一棵带音乐的雪夜圣诞树](https://mp.weixin.qq.com/s/iAXjTbJ6GDRFIWcgITn7iQ)  
+[备战 618，用 Python 领取京东优惠券](https://mp.weixin.qq.com/s/UFeblkyWTSc2y3fzt5Qeag)  
+[用 Python 实现朋友圈中的九宫格图片](https://mp.weixin.qq.com/s/PcvL4QKW4wWNPnTL9hboPw)  
+[用 Python 实现一场环保无污染的烟花秀](https://mp.weixin.qq.com/s/w7bB0iXxbduog5HGcbz63g)  
+[用 Python 了解一下最炫国漫《雾山五行》](https://mp.weixin.qq.com/s/SfLYtAqM23Z-u-FvVbnVPw)  
+[快过年了，用 Python 写副春联 & 福字送给你](https://ityard.blog.csdn.net/article/details/122660590)  
+[不到 100 行 Python 代码即可实现换脸功能](https://mp.weixin.qq.com/s/uqGUlyd2-JinDDBv1He03w)  
+[朋友过生日，用 Python 给她画了个生日蛋糕](https://ityard.blog.csdn.net/article/details/124785862)  
+[不到 20 行 Python 代码即可制作精美证件照](https://blog.csdn.net/ityard/article/details/105722507)  
+[用 Python 将 QQ 好友头像生成「 五一快乐」](https://mp.weixin.qq.com/s/qtW2SXy1U2G1Fi-7YWT74g)  
+[一行命令给猎狐 F4 带口罩 & 检测是否带口罩](https://mp.weixin.qq.com/s/esjJlmeOhAAggXmY-eazbw)  
+[用 Python 给自己的头像加一个小国旗（小月饼）](https://mp.weixin.qq.com/s/I5kX4e_3azB2tOCEFgbKig)  
+[还在为 520 发愁吗？教你用 Python 写个表白神器](https://mp.weixin.qq.com/s/INcJ7fHKYdqMi3QJ1PfUUw)
+
+文档 & 实战项目
+---------
+
+[Python 学习手册](https://blog.csdn.net/ityard/article/details/117757782)  
+[Python3.10 官方文档 PDF](https://ityard.blog.csdn.net/article/details/120915864)  
+[100+ Python 爬虫经典实战项目](https://github.com/ityard/python-fxxk-spider)  
+[70 个 Python 经典实用练手项目 (附源码)](https://ityard.blog.csdn.net/article/details/120793211)  
+[Python 面试大全 PDF(245 道 Python 面试题)](https://ityard.blog.csdn.net/article/details/125340366)  
+[240 个 Python 练习案例附源码 (百看不如一练)](https://ityard.blog.csdn.net/article/details/124765017)
+
+Python 自学路线
+-----------
+
+[Python 全套学习笔记 (入门 + 爬虫 + 可视化 & 数据分析 + 机器学习 + 深度学习)](https://zhuanlan.zhihu.com/p/433045773)
